@@ -33,6 +33,10 @@ export class BlogService {
                     blog.json(), this.getOptions());
     }
 
+    deleteBlog (id: number): Observable<Response> {
+        return this.http.delete('/server/api/blogs/' + id);
+    }
+
     private getOptions (): RequestOptions {
         let headers: Headers = new Headers();
         headers.append('content-type', 'application/json; charset=utf-8');

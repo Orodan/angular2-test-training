@@ -107,4 +107,18 @@ describe('Blog Service', () => {
         });
     }));
 
+    it('should delete an existing blog entry', async(() => {
+        mockBackend.connections.subscribe(connection => {
+            // Make sure the method is correct
+            expect(connection.request.method).toBe(RequestMethod.Delete);
+
+            connection.mockRespond(new Response(new ResponseOptions({status: 204})));
+        });
+
+        blogService.deleteBlog(23).subscribe((result) => {
+            expect(result).toBeDefined();
+            expect(result.status).toBe(204);
+        });
+    }));
+
 });
